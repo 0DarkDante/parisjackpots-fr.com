@@ -28,4 +28,40 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
       overlay.classList.remove('active');
     });
+});
+  
+
+// cookie
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cookiePopup = document.querySelector('.cookie-consent');
+  const btnApprove = document.querySelector('.btn-approve');
+  const btnDecline = document.querySelector('.btn-decline');
+  const cookieKey = 'user_cookie_consent';
+
+  // Перевіряємо чи користувач вже вибрав
+  const consent = localStorage.getItem(cookieKey);
+
+  if (!consent) {
+    // Показуємо попап
+    setTimeout(() => {
+      cookiePopup.classList.add('active');
+    }, 800); // затримка для кращого UX
+  }
+
+  // Обробка кнопки "Прийняти"
+  btnApprove.addEventListener('click', () => {
+    localStorage.setItem(cookieKey, 'approved');
+    hidePopup();
   });
+
+  // Обробка кнопки "Відхилити"
+  btnDecline.addEventListener('click', () => {
+    localStorage.setItem(cookieKey, 'declined');
+    hidePopup();
+  });
+
+  function hidePopup() {
+    cookiePopup.classList.remove('active');
+  }
+});

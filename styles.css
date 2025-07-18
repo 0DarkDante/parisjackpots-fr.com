@@ -735,3 +735,103 @@ header.hdr-main-wrapper {
     background-position: 0% 50%;
   }
 }
+
+/* cookie */
+.cookie-consent {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 400px;
+  width: 90%;
+  background: #2b2b2bcc;
+  backdrop-filter: blur(12px);
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 10000;
+}
+
+.cookie-consent.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.cookie-content {
+  padding: 20px 25px;
+}
+
+.cookie-title {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.cookie-text {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 18px;
+  color: #eee;
+}
+
+.cookie-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.cookie-actions button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+.btn-approve {
+  background-color: #ff8f00;
+  color: #1c1800;
+  box-shadow: 0 4px 12px #ff8f0040;
+}
+
+.btn-approve:hover {
+  background-color: #ffaa00;
+  box-shadow: 0 6px 18px #ffaa0040;
+}
+
+.btn-decline {
+  background-color: transparent;
+  color: #ccc;
+  border: 2px solid #ccc;
+}
+
+.btn-decline:hover {
+  background-color: #444;
+  border-color: #eee;
+  color: #fff;
+}
+
+/* Мобільна адаптація */
+@media (max-width: 480px) {
+  .cookie-consent {
+    max-width: 95%;
+    bottom: 10px;
+  }
+
+  .cookie-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cookie-actions button {
+    width: 100%;
+  }
+}
