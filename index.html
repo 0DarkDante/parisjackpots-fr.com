@@ -22,7 +22,7 @@
         </a>
         <nav class="hdr-nav-menu">
           <a href="head1.html">Règles et Conditions d’Accès</a>
-          <a href="#">Entrer en Contact</a>
+          <a href="#" class="contact-link"">Entrer en Contact</a>
         </nav>
       </div>
     </header>
@@ -243,7 +243,7 @@
       </div>
       <div class="footer-bottom">
         <nav>
-          <a href="#">Entrer en Contact</a>
+          <a href="#" class="contact-link"">Entrer en Contact</a>
           <a href="head1.html">Règles et Conditions d’Accès</a>
           <a href="footer3.html">Directive sur les Cookies</a>
           <a href="footer4.html">Sécurité & Jeu Responsable</a>
@@ -296,6 +296,27 @@
         <p>Accès interdit aux mineurs.</p>
       </div>
     </div> -->
-    <script src="js/script.js"></script>
+
+<div class="contact-overlay">
+  <form class="contact-form" novalidate>
+    <button type="button" class="contact-close" aria-label="Fermer la fenêtre">&times;</button>
+    <h2>Contactez-nous</h2>
+
+    <label for="name">Nom</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="4" required></textarea>
+
+    <button type="submit">Envoyer</button>
+  </form>
+</div>
+
+
+
+    <script src="./js/script.js" defer></script>
   </body>
 </html>

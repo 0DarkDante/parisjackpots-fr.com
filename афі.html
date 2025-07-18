@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Formulaire de Contact</title>
+    <style>
+      /* Оверлей - фоновий затемнений блок */
+      .contact-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.75);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+        z-index: 10000;
+      }
+      .contact-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      /* Форма */
+      .contact-form {
+        background: #222;
+        padding: 30px 40px;
+        border-radius: 15px;
+        width: 360px;
+        max-width: 90vw;
+        box-shadow: 0 8px 30px rgba(255, 143, 0, 0.8), inset 0 0 15px #ff8f00;
+        color: #fff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        position: relative;
+        transform: translateY(-40px);
+        opacity: 0;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .contact-overlay.active .contact-form {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Заголовок форми */
+      .contact-form h2 {
+        margin: 0 0 20px;
+        font-weight: 900;
+        font-size: 1.8rem;
+        color: #ff8f00;
+        text-align: center;
+        text-shadow: 0 0 8px #ff8f00;
+      }
+
+      /* Кнопка закриття */
+      .contact-close {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: transparent;
+        border: none;
+        color: #ff8f00;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        user-select: none;
+        line-height: 1;
+      }
+      .contact-close:hover {
+        color: #ffa726;
+      }
+
+      /* Лейбли */
+      .contact-form label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #ffb74d;
+        text-shadow: 0 0 3px #ff8f00;
+      }
+
+      /* Інпуты та textarea */
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 12px 14px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border: 2px solid #333;
+        background: #2b2b2b;
+        color: #fff;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        resize: vertical;
+        box-sizing: border-box;
+      }
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        outline: none;
+        border-color: #ff8f00;
+        box-shadow: 0 0 12px 2px rgba(255, 143, 0, 0.6);
+      }
+
+      /* Кнопка Відправити */
+      .contact-form button[type="submit"] {
+        width: 100%;
+        padding: 14px 0;
+        background: linear-gradient(270deg, #ff8f00, #5c5a02, #ff8f00);
+        background-size: 600% 600%;
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-weight: 800;
+        font-size: 1.2rem;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(255, 143, 0, 0.7),
+          inset 0 -2px 8px rgba(255, 255, 255, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 1.1px;
+        transition: box-shadow 0.3s ease, transform 0.25s ease;
+        animation: gradientShift 10s ease infinite;
+        user-select: none;
+        position: relative;
+        overflow: hidden;
+      }
+      .contact-form button[type="submit"]::before {
+        content: "";
+        position: absolute;
+        top: -40%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle at center,
+          rgba(255, 255, 255, 0.4) 0%,
+          transparent 70%
+        );
+        transform: rotate(45deg);
+        transition: all 0.5s ease;
+        pointer-events: none;
+      }
+      .contact-form button[type="submit"]:hover {
+        box-shadow: 0 6px 20px rgba(255, 143, 0, 0.9),
+          inset 0 -4px 12px rgba(255, 255, 255, 0.5);
+        transform: scale(1.05);
+      }
+      .contact-form button[type="submit"]:hover::before {
+        top: -60%;
+        left: 100%;
+        transition: all 0.7s ease;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Посилання для відкриття форми -->
+    <a
+      href="#"
+      id="contact-link"
+      style="font-weight: 700; font-size: 1.2rem; color: #ff8f00"
+      >Entrer en Contact</a
+    >
+
+    <!-- Контейнер з формою -->
+    <div class="contact-overlay" id="contact-overlay">
+      <form class="contact-form" id="contact-form" novalidate>
+        <button
+          type="button"
+          class="contact-close"
+          id="contact-close"
+          aria-label="Fermer la fenêtre"
+        >
+          &times;
+        </button>
+        <h2>Contactez-nous</h2>
+
+        <label for="name">Nom</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const overlay = document.getElementById("contact-overlay");
+        const openBtn = document.getElementById("contact-link");
+        const closeBtn = document.getElementById("contact-close");
+        const form = document.getElementById("contact-form");
+
+        openBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          overlay.classList.add("active");
+        });
+
+        closeBtn.addEventListener("click", () => {
+          overlay.classList.remove("active");
+        });
+
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) {
+            overlay.classList.remove("active");
+          }
+        });
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          alert("Merci pour votre message !");
+          form.reset();
+          overlay.classList.remove("active");
+        });
+      });
+    </script>
+  </body>
+</html>
