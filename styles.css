@@ -79,16 +79,56 @@ header.hdr-main-wrapper {
   padding: 40px 20px;
 }
 
+.section-intro {
+  position: relative;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #ffffff;
+  padding: 80px 20px 80px 60px;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 1100px;
+  margin: 40px auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.section-intro::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35%;
+  /* Ширина картинки — 35% від ширини секції */
+  height: 100%;
+  /* Повна висота секції */
+  background-image: url('images/back.jpg');
+  background-size: cover;
+  /* Розтягнути на всю площу */
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0.15;
+  pointer-events: none;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
 .section-title {
-  font-size: 2rem;
-  color: var(--accent-color);
+  font-size: 2.8rem;
+  font-weight: 700;
   margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  max-width: 60%;
+  /* Ліміт тексту, щоб не заходив на картинку */
 }
 
 .section-summary {
-  margin-top: 10px;
-  font-size: 1rem;
-  color: #ddd;
+  font-size: 1.3rem;
+  max-width: 60%;
+  /* Так само, щоб текст не заважав */
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
 }
 
 .intro-media-block {
