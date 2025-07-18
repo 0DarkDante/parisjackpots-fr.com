@@ -835,3 +835,131 @@ header.hdr-main-wrapper {
     width: 100%;
   }
 }
+
+/* age */
+
+.age-gate {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 12, 12, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.age-gate__confirm,
+.age-gate__denied {
+  background: #222;
+  padding: 30px 40px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  animation: fadeInScale 0.5s ease forwards;
+}
+
+.age-gate__denied.hidden {
+  display: none;
+}
+
+.age-gate img {
+  width: 70px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.6));
+}
+
+.age-gate p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.age-gate a {
+  color: #ff8f00;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.age-gate a:hover,
+.age-gate a:focus {
+  color: #ffaa00;
+  outline: none;
+}
+
+.age-gate__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.age-gate__buttons button {
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  min-width: 140px;
+}
+
+.btn-confirm {
+  background-color: #5c5a02;
+  color: #fff;
+  box-shadow: 0 4px 12px #5c5a0222;
+}
+
+.btn-confirm:hover,
+.btn-confirm:focus {
+  background-color: #ff8f00;
+  box-shadow: 0 6px 18px #ff8f0044;
+  outline: none;
+}
+
+.btn-deny {
+  background-color: transparent;
+  color: #ccc;
+  border: 2px solid #ccc;
+}
+
+.btn-deny:hover,
+.btn-deny:focus {
+  background-color: #444;
+  border-color: #eee;
+  color: #fff;
+  outline: none;
+}
+
+/* Анімація появи */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Адаптив */
+@media (max-width: 480px) {
+  .age-gate__buttons {
+    flex-direction: column;
+  }
+
+  .age-gate__buttons button {
+    min-width: 100%;
+  }
+}
+

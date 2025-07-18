@@ -65,3 +65,29 @@ document.addEventListener('DOMContentLoaded', () => {
     cookiePopup.classList.remove('active');
   }
 });
+
+// age
+
+document.addEventListener('DOMContentLoaded', () => {
+  const ageGate = document.querySelector('.age-gate');
+  const confirmBox = document.querySelector('.age-gate__confirm');
+  const deniedBox = document.querySelector('.age-gate__denied');
+  const btnConfirm = document.querySelector('.btn-confirm');
+  const btnDeny = document.querySelector('.btn-deny');
+  const storageKey = 'age_verification_passed';
+
+  // Якщо користувач вже підтвердив вік раніше — приховуємо перевірку
+  if (localStorage.getItem(storageKey) === 'true') {
+    ageGate.style.display = 'none';
+  }
+
+  btnConfirm.addEventListener('click', () => {
+    localStorage.setItem(storageKey, 'true');
+    ageGate.style.display = 'none';
+  });
+
+  btnDeny.addEventListener('click', () => {
+    confirmBox.style.display = 'none';
+    deniedBox.classList.remove('hidden');
+  });
+});
